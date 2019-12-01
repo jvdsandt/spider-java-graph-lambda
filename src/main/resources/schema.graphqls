@@ -1,0 +1,20 @@
+type Query {
+  methodById(id: ID!): Method
+  methods(selector: String, limit: Int = 100, offset: Int = 0): [Method]
+  classById(id: ID!): Class
+  classes(name: String, limit: Int = 100, offset: Int = 0): [Class]
+}
+
+type Method {
+  id: ID
+  selector: String
+  source: String
+}
+
+type Class {
+  id: ID
+  name: String!
+  comment: String
+  categories(meta: Boolean!): [String]
+  methods(meta: Boolean!, category: String): [Method]
+}
